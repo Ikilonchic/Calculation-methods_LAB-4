@@ -1,32 +1,34 @@
-import math
+from math import sqrt
 
-def SQRT(matrix: "list_of_list", result: list) -> list:
-    S = [[0.0 for i in range(len(matrix))] for j in range(len(matrix))]
+def SQRT_sol(matrix: "list_of_list", result: list) -> list:
+    n = len(result)
 
-    for i in range(len(S)):
-        for j in range(i, len(S)):
+    S = [[0.0 for i in range(n)] for j in range(n)]
+
+    for i in range(n):
+        for j in range(i, n):
             if i == j:
-                S[i][i] = math.sqrt(matrix[i][i] - sum([S[k][i] ** 2 for k in range(0, i) if i >= 1]))
+                S[i][i] = sqrt(matrix[i][i] - sum([S[k][i] ** 2 for k in range(0, i) if i >= 1]))
             else:
                 S[i][j] = (matrix[i][j] - sum([S[k][i] * S[k][j] for k in range(0, i)])) / (S[i][i])
 
-    Y = [0.0 for i in range(len(S))]
+    Y = [0.0 for i in range(n)]
 
-    for i in range(len(S)):
+    for i in range(n):
         if i == 0:
             Y[i] = (result[i]) / (S[i][i])
         else:
             Y[i] = (result[i] - sum([S[k][i] * Y[k] for k in range(0, i)])) / (S[i][i])
 
-    X = [0.0 for i in range(len(S))]
+    X = [0.0 for i in range(n)]
 
-    for i in range(len(S) - 1, -1, -1):
-        if i == len(S) - 1:
+    for i in range(n - 1, -1, -1):
+        if i == n - 1:
             X[i] = (Y[i]) / (S[i][i])
         else:
-            X[i] = (Y[i] - sum([S[i][k] * X[k] for k in range(i, len(S))])) / (S[i][i])
+            X[i] = (Y[i] - sum([S[i][k] * X[k] for k in range(i, n)])) / (S[i][i])
 
-    for i in range(len(X)):
+    for i in range(n):
         X[i] = round(X[i]) if abs(X[i] - round(X[i])) < 10e-10 else round(X[i], 4)
 
 
@@ -40,4 +42,4 @@ test = [
 
 test_result = [15, 17,19]
 
-print(SQRT(test, test_result))
+print(SQRT_sol(test, test_result))
