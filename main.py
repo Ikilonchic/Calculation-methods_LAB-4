@@ -14,5 +14,8 @@ test = [
 test_result = [15, 17,19]
 
 print(SQRT_sol(test, test_result))
+print("Syka, where's this line?")
 print(Gauss_sol(test, test_result))
+print("Gauss, are you done?")
 print(Richardson_sol(test, test_result, SQRT_sol(test, test_result)))
+print("Finally!!!")

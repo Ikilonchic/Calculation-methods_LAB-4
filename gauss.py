@@ -28,6 +28,6 @@ test = [
     [1, 2, 5]
 ]
 
-test_result = [15, 17,19]
+test_result = [15, 17, 19]
 
 print(Gauss_sol(test, test_result))
