@@ -6,16 +6,13 @@ from iteration import Richardson_sol
 from gauss import Gauss_sol
 
 test = [
-    [5, 2, 1],
-    [2, 7, 2],
-    [1, 2, 5]
+    [7., -1., -3.],
+    [-1., 5., -2.],
+    [-3., -2., 7.]
 ]
 
-test_result = [15, 17,19]
+test_result = [14., -2., 3.]
 
-print(SQRT_sol(test, test_result))
-print("Syka, where's this line?")
-print(Gauss_sol(test, test_result))
-print("Gauss, are you done?")
-print(Richardson_sol(test, test_result, SQRT_sol(test, test_result)))
-print("Finally!!!")
+print(f"Результат метода квадратного корня: {SQRT_sol(test, test_result)}")
+print(f"Результат метода Гаусса: {Gauss_sol(test, test_result)}")
+print(f"Результат метода простой итерации: {Richardson_sol(test, test_result, SQRT_sol(test, test_result))}")

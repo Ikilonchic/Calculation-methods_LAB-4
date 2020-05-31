@@ -1,9 +1,7 @@
 import numpy as np
+from copy import deepcopy
 
-def Richardson_sol(matrix, result, true_xs, epsilon=0.1) -> list:
-    if np.linalg.det(np.array(matrix)) == 0:
-        return None
-    
+def Richardson_sol(matrix: list, result: list, true_xs: list, epsilon=10e-10) -> list:
     n = len(result)
     B = np.array(matrix)
     g = np.array(result)
@@ -16,10 +14,10 @@ def Richardson_sol(matrix, result, true_xs, epsilon=0.1) -> list:
         B[i][i] = 0.0
 
     xs_prev = np.array([1.0] * n)
-    xs_new = B.dot(xs_prev) + g
+    xs_new = B.dot(xs_prev) + deepcopy(g)
 
     while np.linalg.norm(true_xs - xs_prev) > epsilon:
-        xs_new = np.array(B.dot(xs_prev) + g)
+        xs_new = np.array(B.dot(xs_prev) + deepcopy(g))
         xs_prev = xs_new
 
     xs_new = xs_new.tolist()
@@ -29,12 +27,13 @@ def Richardson_sol(matrix, result, true_xs, epsilon=0.1) -> list:
 
     return xs_new
 
-test = [
-    [5, 2, 1],
-    [2, 7, 2],
-    [1, 2, 5]
-]
+if __name__ == "__main__":
+    test = [
+        [5, 2, 1],
+        [2, 7, 2],
+        [1, 2, 5]
+    ]
 
-test_result = [15, 17, 19]
+    test_result = [15, 17, 19]
 
-print(Richardson_sol(test, test_result, [2, 1, 3]))
+    print(Richardson_sol(test, test_result, [2, 1, 3]))

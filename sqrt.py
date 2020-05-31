@@ -1,6 +1,6 @@
 from math import sqrt
 
-def SQRT_sol(matrix: "list_of_list", result: list) -> list:
+def SQRT_sol(matrix: list, result: list) -> list:
     n = len(result)
 
     S = [[0.0 for i in range(n)] for j in range(n)]
@@ -34,12 +34,13 @@ def SQRT_sol(matrix: "list_of_list", result: list) -> list:
 
     return X
 
-test = [
-    [5, 2, 1],
-    [2, 7, 2],
-    [1, 2, 5]
-]
+if __name__ == "__main__":
+    test = [
+        [5, 2, 1],
+        [2, 7, 2],
+        [1, 2, 5]
+    ]
 
-test_result = [15, 17, 19]
+    test_result = [15, 17, 19]
 
-print(SQRT_sol(test, test_result))
+    print(SQRT_sol(test, test_result))
